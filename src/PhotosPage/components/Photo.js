@@ -6,8 +6,8 @@ import '../styles/Photo.css';
 class Photo extends Component {
   constructor(props) {
     super(props);
-    this.baseClassName = `polaroid-photo z-${this.props.photoIndex + 1}`;
-    this.myRotationClass = this.baseClassName;
+    this.myRotation = Math.round(Math.random() * 90 - 45);
+    this.baseClassName = this.getBaseClass(this.myRotation);
     this.state = {
       photoClass: this.baseClassName,
       isActivePhoto: false
@@ -15,39 +15,35 @@ class Photo extends Component {
   }
 
   componentWillMount() {
-    this.getClass();
+    this.updateClass();
   }
 
   componentWillReceiveProps(nextProps) {
-    let isActivePhoto = false;
-    let photoClass = this.myRotationClass;
-    if (nextProps.activePhoto === this.props.photoData.id) {
-      photoClass = this.baseClassName + ' active';
-      isActivePhoto = true;
-    }
-    this.setState({ photoClass, isActivePhoto });
+    const isActivePhoto = nextProps.activePhoto === this.props.photoData.id;
+    this.updateClass(isActivePhoto);
+    this.setState({ isActivePhoto });
   }
 
-  randRotation() {
-    return Math.round(Math.random() * 90 - 45);
+  getBaseClass(myRotation) {
+    const photoClass = 'polaroid-photo';
+    const positiveRotation = `${photoClass} polaroid-angle-${myRotation}`;
+    const negativeRotation = `${photoClass} polaroid-angle-neg${myRotation}`;
+    return myRotation >= 0 ? positiveRotation : negativeRotation;
   }
 
-  getClass() {
-    let photoClass = this.baseClassName;
-    const randomNumber = this.randRotation();
-    const positiveRotation = `${photoClass} polaroid-angle-${randomNumber}`;
-    const negativeRotation = `${photoClass} polaroid-angle-neg${randomNumber}`;
-    if (randomNumber === 0) {
-      this.myRotationClass = this.baseClassName;
-      this.setState({ baseClassName: this.baseClassName });
+  updateClass(isActivePhoto = false) {
+    let photoClass = `${this.baseClassName} z-${this.props.photoIndex + 1}`;
+    if (isActivePhoto) {
+      photoClass = 'polaroid-photo active';
     }
-
-    photoClass = randomNumber > 0 ? positiveRotation : negativeRotation;
-    this.myRotationClass = photoClass;
     this.setState({ photoClass });
   }
 
-  handleClick() {
+  handleClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('clicked ', this.props.photoIndex);
+
     const {
       activePhoto,
       handleActivePhoto,
@@ -58,8 +54,8 @@ class Photo extends Component {
 
     if (isActivePhoto) {
       // if active photo is clicked again send it back to the top
-      handleActivePhoto(0);
       moveActivePhotoTo('top');
+      handleActivePhoto(0);
     } else {
       // if inactive photo clicked, check to see if we have an active photo
       // if we do, send active photo to bottom and make this one activePhoto
