@@ -1,3 +1,36 @@
-a {
-    color: green;
+@import '../../Common/styles/vars';
+
+// spans image across entire page
+.container-fluid,
+.hero_img {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+// hero image
+.hero_img {
+  background-image: url('../images/flowers.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  vertical-align: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .hero_date,
+  .hero_text {
+    text-align: center;
+    color: $main_font_color;
+  }
+
+  .hero_text {
+    font-size: 500%;
+    font-weight: bolder;
+  }
+
+  #hero_date {
+    font-size: 100%;
+  }
 }
