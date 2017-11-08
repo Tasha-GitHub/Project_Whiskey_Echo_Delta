@@ -1,36 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Photo from './Photo';
-
-import '../styles/PhotoCollection.css';
+import { Lightbox, Gallery } from 'react-images';
 
 const PhotosCollection = ({
-  activePhoto,
-  handleActivePhoto,
+  currentImage,
   photos,
-  moveActivePhotoTo
+  lightboxIsOpen,
+  gotoPrevLightboxImage,
+  gotoNextLightboxImage,
+  closeLightbox
 }) => {
   return (
-    <ul className="gallery">
-      {photos.map((photo, i) => (
-        <Photo
-          key={i}
-          photoIndex={i}
-          collectionSize={photos.length}
-          photoData={photo}
-          activePhoto={activePhoto}
-          handleActivePhoto={handleActivePhoto}
-          moveActivePhotoTo={moveActivePhotoTo}
-        />
-      ))}
-    </ul>
+    <div className="photo-grid">
+      <Lightbox
+        images={photos}
+        currentImage={currentImage}
+        isOpen={true}
+        onClickPrev={gotoPrevLightboxImage}
+        onClickNext={gotoNextLightboxImage}
+        onClose={closeLightbox}
+      />
+    </div>
   );
 };
 
 PhotosCollection.propTypes = {
   photos: PropTypes.array.isRequired,
-  activePhoto: PropTypes.number,
+  currentImage: PropTypes.number,
   handleActivePhoto: PropTypes.func.isRequired,
   moveActivePhotoTo: PropTypes.func.isRequired
 };
