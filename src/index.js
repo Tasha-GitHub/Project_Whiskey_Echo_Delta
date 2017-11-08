@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Routes from './routes';
 
-import './GlobalStyles/globalStyles.css';
+import './Common/styles/GlobalStyles.css';
 
 // Import the SDK and Project Configuration
 import AWS from 'aws-sdk';

@@ -7,7 +7,7 @@ import { PhotosPage } from './PhotosPage';
 
 const Routes = props => (
   <Router {...props}>
-    <div>
+    <div className="routes-container">
       <Route exact path="/" component={HomePage} />
       <Route path="/itinerary" component={ItineraryPage} />
       <Route path="/photos" component={PhotosPage} />
