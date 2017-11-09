@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Routes from './routes';
+import AppContainer from './AppContainer';
 
 import './Common/styles/GlobalStyles.css';
 
@@ -16,4 +16,4 @@ AWS.config.update({
   })
 });
 
-ReactDOM.render(<Routes />, document.getElementById('root'));
+ReactDOM.render(<AppContainer />, document.getElementById('root'));
