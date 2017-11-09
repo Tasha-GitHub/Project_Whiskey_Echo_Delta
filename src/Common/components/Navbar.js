@@ -1,12 +1,12 @@
-import { withRouter } from 'react-router';
 import React, { Component } from 'react';
 import { Navbar } from 'react-bootstrap';
 import { NavItem } from 'react-bootstrap';
 import { MenuItem } from 'react-bootstrap';
 import { NavDropdown } from 'react-bootstrap';
 import { Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-class App extends Component {
+class NavBar extends Component {
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -26,12 +26,12 @@ class App extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-            <NavItem eventKey={1} href="/itinerary">
-              Itinerary
-            </NavItem>
+            <NavItem />
             <NavItem eventKey={2} href="/photos">
               Link Right
             </NavItem>
+            <Link to={`/itinerary`} />
+            Itinerary
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -39,4 +39,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+export default NavBar;

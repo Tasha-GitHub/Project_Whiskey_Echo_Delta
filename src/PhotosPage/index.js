@@ -1,3 +1,4 @@
 import PhotosPage from './containers/PhotosPageContainer';
+import PhotosGrid from './containers/PhotosGridContainer';
 
-export { PhotosPage };
+export { PhotosPage, PhotosGrid };
