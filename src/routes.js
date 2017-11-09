@@ -14,7 +14,7 @@ const Routes = props => (
       <Route exact path="/" component={HomePage} />
       <Route path="/itinerary" component={ItineraryPage} />
       <Route exact path="/photos" component={PhotosPage} />
-      <Route path="/photos/:type" component={PhotosGrid} />
+      <Route path="/photos/:albumType" component={PhotosGrid} />
     </div>
   </Router>
 );
