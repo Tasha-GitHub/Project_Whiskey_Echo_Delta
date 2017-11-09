@@ -5,6 +5,7 @@ import { MenuItem } from 'react-bootstrap';
 import { NavDropdown } from 'react-bootstrap';
 import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+// import { LinkContainer } from 'react-router-bootstrap';
 
 class NavBar extends Component {
   // constructor(props) {
@@ -17,21 +18,21 @@ class NavBar extends Component {
   render() {
     // console.log(this.props.location.pathname);
     return (
-      <Navbar inverse collapseOnSelect>
+      <Navbar collapseOnSelect>
         <Navbar.Header>
-          <Navbar.Brand>
-            <a href="#">React-Bootstrap</a>
-          </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-            <NavItem />
-            <NavItem eventKey={2} href="/photos">
-              Link Right
-            </NavItem>
-            <Link to={`/itinerary`} />
-            Itinerary
+            <li role="presentation" class="">
+              <Link to="/">Home</Link>
+            </li>
+            <li role="presentation" class="">
+              <Link to="/itinerary">Itinerary</Link>
+            </li>
+            <li role="presentation" class="">
+              <Link to="/photos">Photos</Link>
+            </li>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
