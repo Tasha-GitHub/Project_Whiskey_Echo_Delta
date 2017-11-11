@@ -1,77 +1,83 @@
 // libraries
 import React, { Component } from 'react';
-import AWS from 'aws-sdk';
-import { config } from '../../config';
 
 // components
-// import PhotosCollection from '../components/PhotosCollection';
+import PhotoCollectionPanel from '../components/PhotoCollectionPanel';
+
+import '../styles/PhotosPageContainer.css';
+
+const photoCategoryData = [
+  {
+    category: 'engagement',
+    topText: 'Rob&Tasha',
+    middleText: 'Engaged',
+    bottomText: '10/15/17'
+  },
+  {
+    category: 'wedding',
+    topText: 'Rob&Tasha',
+    middleText: 'Wedding',
+    bottomText: 'xx/xx/2019'
+  },
+  {
+    category: 'honeymoon',
+    topText: 'Rob&Tasha',
+    middleText: 'Honeymoon',
+    bottomText: 'xx/xx/2019'
+  }
+];
 
 export default class PhotosPageContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos: [],
-      lightboxIsOpen: false,
-      currentImage: 0
+      classExtension: '',
+      activePanel: ''
     };
   }
 
-  componentDidMount() {
-    const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
-    const Bucket = config.S3_BUCKET;
+  handleMouseEnter(category) {
+    this.setState({
+      classExtension: 'open',
+      activePanel: category
+    });
+  }
 
-    const params = {
-      Bucket,
-      Prefix: 'engagement'
-    };
+  handleMouseLeave() {
+    this.setState({
+      classExtension: ''
+    });
+  }
 
-    s3.listObjectsV2(params, (err, data) => {
-      const bucketContents = data.Contents;
-      const imgArray = bucketContents.map((item, i) => {
-        const urlParams = {
-          Bucket,
-          Key: bucketContents[i].Key
-        };
-        return s3.getSignedUrl('getObject', urlParams);
+  handleTransitionEnd(e) {
+    const { classExtension } = this.state;
+    if (classExtension.includes('open') && e.propertyName.includes('flex')) {
+      this.setState({
+        classExtension: 'open open-active'
       });
-      console.log(imgArray);
-    });
-  }
-
-  openLightbox(index, event) {
-    event.preventDefault();
-    this.setState({
-      currentImage: index,
-      lightboxIsOpen: true
-    });
-  }
-
-  gotoPrevLightboxImage() {
-    this.setState({
-      currentImage: this.state.currentImage - 1
-    });
-  }
-
-  gotoNextLightboxImage() {
-    this.setState({
-      currentImage: this.state.currentImage + 1
-    });
-  }
-
-  closeLightbox() {
-    this.setState({
-      currentImage: 0,
-      lightboxIsOpen: false
-    });
-  }
-
-  handleClickImage() {
-    if (this.state.currentImage === this.props.images.length - 1) return;
-
-    this.gotoNext();
+    }
   }
 
   render() {
-    return <h1>Hello world</h1>;
+    const actions = {
+      handleMouseEnter: this.handleMouseEnter.bind(this),
+      handleMouseLeave: this.handleMouseLeave.bind(this),
+      handleTransitionEnd: this.handleTransitionEnd.bind(this)
+    };
+    const { classExtension, activePanel } = this.state;
+    return (
+      <div className="panels">
+        {photoCategoryData.map((data, i) => {
+          const props = {
+            actions,
+            content: data,
+            index: i,
+            classExtension,
+            activePanel
+          };
+          return <PhotoCollectionPanel {...props} />;
+        })}
+      </div>
+    );
   }
 }
