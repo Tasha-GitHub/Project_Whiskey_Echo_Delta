@@ -1,15 +1,35 @@
+@import './_vars.scss';
+
+//css over-rides
 body,
 html,
 #root,
-.routes-container,
-.container-fluid {
+.routes-container {
   width: 100%;
   height: 100%;
   padding: 0px;
   margin: 0px;
 }
+.container-fluid {
+  width: 100%;
+  height: 92%;
+  padding: 0px;
+  margin: 0px;
+}
+//end css over-rides
 
 //Navbar stlyes
+
+.navbar {
+  height: 8%;
+  .container,
+  .navbar-collapse,
+  .collapse,
+  .nav {
+    height: 100% !important;
+  }
+}
+
 .navbar,
 .navbar-default {
   margin: 0px;
@@ -25,10 +45,12 @@ html,
     }
     > li > a {
       color: black;
-      font-size: 100%;
+      font-size: 300%;
+      height: 90%;
       font-weight: bolder;
       margin-bottom: 0px;
-      padding: 15px 0px 3px 0px;
+      padding: 15px 0px 0px 0px;
+      font-family: $nav_font;
     }
 
     > li > a:before {

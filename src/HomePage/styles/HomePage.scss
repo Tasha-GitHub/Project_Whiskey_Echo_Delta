@@ -23,14 +23,16 @@
   .hero_text {
     text-align: center;
     color: $main_font_color;
+    font-family: $banner_font;
   }
 
   .hero_text {
     font-size: 500%;
     font-weight: bolder;
+    font-family: $banner_font;
   }
 
-  #hero_date {
-    font-size: 100%;
+  .hero_date {
+    font-size: 200%;
   }
 }
