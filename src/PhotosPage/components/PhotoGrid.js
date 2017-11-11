@@ -7,7 +7,7 @@ const PhotoGrid = ({ photos }) => {
   return (
     <div className="photo-grid">
       <Masonry
-        className={'my-gallery-class'} // default ''
+        className={'masonry-gallery'} // default ''
         elementType={'ul'} // default 'div'
         options={{
           transitionDuration: 0
