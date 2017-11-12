@@ -1,0 +1,14 @@
+.loading {
+  background: rgba(0, 0, 0, 0.2);
+  height: 100% !important;
+  width: 100% !important;
+  position: absolute;
+  z-index: 99999;
+  display: flex;
+  svg {
+    height: 20%;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+  }
+}
