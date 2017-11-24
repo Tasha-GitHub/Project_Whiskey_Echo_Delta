@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../styles/HomePage.css';
 // import logo from './logo.svg';
 // import './App.css';
-import Navbar from '../../Common/components/Navbar';
+//import Navbar from '../../Common/components/Navbar';
 
 class App extends Component {
   render() {

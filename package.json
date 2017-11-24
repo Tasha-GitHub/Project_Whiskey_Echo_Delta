@@ -19,14 +19,11 @@
     "react-stack-grid": "^0.6.0"
   },
   "scripts": {
-    "build-css":
-      "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css":
-      "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
-    "prebuild":
-      "aws s3 cp s3://${S3BUCKET}/aws-exports.js ./src/aws-exports.js",
+    "prebuild": "aws s3 cp s3://${S3BUCKET}/aws-exports.js ./src/aws-exports.js",
     "build": "npm run build-css && react-scripts build",
     "predeploy": "npm run build",
     "deploy": "aws s3 cp build s3://${S3BUCKET} --recursive",

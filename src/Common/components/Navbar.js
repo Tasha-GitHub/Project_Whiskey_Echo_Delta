@@ -18,23 +18,19 @@ class NavBar extends Component {
   render() {
     // console.log(this.props.location.pathname);
     return (
-      <Navbar collapseOnSelect>
-        <Navbar.Header>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav pullRight>
-            <li role="presentation" class="">
-              <Link to="/">Home</Link>
-            </li>
-            <li role="presentation" class="">
-              <Link to="/itinerary">Itinerary</Link>
-            </li>
-            <li role="presentation" class="">
-              <Link to="/photos">Photos</Link>
-            </li>
-          </Nav>
-        </Navbar.Collapse>
+      <Navbar>
+        <Navbar.Header />
+        <Nav pullRight>
+          <li role="presentation" className="">
+            <Link to="/">Home</Link>
+          </li>
+          <li role="presentation" className="">
+            <Link to="/itinerary">Itinerary</Link>
+          </li>
+          <li role="presentation" className="">
+            <Link to="/photos">Photos</Link>
+          </li>
+        </Nav>
       </Navbar>
     );
   }
